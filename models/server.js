@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
-
 const db = require("../database/db");
+
 
 class Server{
 
@@ -51,10 +51,9 @@ class Server{
 
     bd(){
         db.sequelize.sync();
-        // db.sequelize.sync({ force: true }).then(() => {
-        // console.log("Elimina y reinicia la db.");
-        // });
-        
+        db.sequelize.sync({ force: true }).then(() => {
+        console.log("Elimina y reinicia la db.");
+        });
     }
 
 
