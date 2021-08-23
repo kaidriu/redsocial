@@ -17,6 +17,8 @@ const validarEmail = async (email)=>{
     }
 
 }
+
+
 const encontrarUsuario = async(id)=>{
 
     const usuario = await User.findByPk(id);
@@ -26,13 +28,6 @@ const encontrarUsuario = async(id)=>{
     }
 
 }
-
-
-
-
-
-
-
 
 
 module.exports={

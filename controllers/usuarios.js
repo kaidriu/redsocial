@@ -72,7 +72,6 @@ const usuariosPost = async (req,res=response)=>{
 
 const usuariosPut = async (req,res=response)=>{
     
-    const {id} =req.params;
     const {body} =req;
 
 
@@ -86,7 +85,7 @@ const usuariosPut = async (req,res=response)=>{
     await usuario.update(body);
 
     res.json({
-        msg: "Hola put controlador",
+      
         body
     })
 
@@ -107,10 +106,11 @@ const deleteUsuario = async (req,res=response)=>{
     
     //eliminacion fisica
 
-     await usuario.destroy();
+    await usuario.destroy();
 
-     //eliminacionn logica
-    //  await usuario.update({estado=0});
+    //eliminacionn logica
+
+    // await usuario.update({estado=0});
 
      res.json({
          usuario
