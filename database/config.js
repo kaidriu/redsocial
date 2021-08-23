@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: "localhost",
-    USER: "postgres",
-    PASSWORD: "solsito28",
-    DB: "face!ook",
+    HOST: "bym8pshutkczle2kolvq-postgresql.services.clever-cloud.com",
+    USER: "ucnmbx7jusqxudb9zdxr",
+    PASSWORD: "a4KXHj8r4YPqDSoQDkUi",
+    DB: "bym8pshutkczle2kolvq",
     dialect: "postgres",
     pool: {
       max: 5,
