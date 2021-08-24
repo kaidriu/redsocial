@@ -4,7 +4,7 @@ const bcrypts=require('bcryptjs');
 const db = require('../database/db');
 
 const User = db.user;
-
+const Profile = db.profile;
 
 const getUsuarios = async (req,res=response)=>{
 
@@ -52,12 +52,17 @@ const usuariosPost = async (req,res=response)=>{
         //guardar en bd
         await usuario.save();
 
-        const usuario2 = await User.findOne({
+        userId=usuario.id;
+
+        const profile = new Profile({userId});
+        await profile.save();
+
+        const usuariof = await User.findOne({
             where: {"email": email},
             attributes: {exclude: ['password']}
         });
 
-        res.json(usuario2)
+        res.json(usuariof)
         
     } catch (error) {   
         console.log(error);
@@ -103,17 +108,16 @@ const deleteUsuario = async (req,res=response)=>{
              msg:`No exite el usuario con el id : ${id}`
          })
      }
-    
+    const usuarioAuthenticado = req.usuario;
     //eliminacion fisica
-
     await usuario.destroy();
-
+    //const uid = req.uid; 
     //eliminacionn logica
-
     // await usuario.update({estado=0});
 
      res.json({
-         usuario
+         usuario,
+         usuarioAuthenticado
      })
  }
 

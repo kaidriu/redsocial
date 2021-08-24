@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const {  usuariosPost, usuariosPut, getUsuario, getUsuarios, deleteUsuario } = require('../controllers/usuarios');
 const { validarEmail, encontrarUsuario } = require('../helpers/db-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-JWT');
 
 const router = Router();
 
@@ -22,7 +23,10 @@ router.post('/',
 router.get('/',getUsuarios);
 
 
-router.delete('/:id',deleteUsuario);
+router.delete('/:id',[
+    validarJWT,
+    validarCampos
+],deleteUsuario);
 
 router.put('/:id',
 [

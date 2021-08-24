@@ -1,11 +1,12 @@
 const dbConfig = require("./config.js");
 
 const Sequelize = require("sequelize");
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-  port: 5945,
+  // port: 5945,
 
   pool: {
     max: dbConfig.pool.max,
@@ -20,7 +21,19 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.red = require("../models/usuario.js")(sequelize, Sequelize);
+
+db.profile = require("../models/profile.js")(sequelize, Sequelize);
 db.user = require("../models/user.js")(sequelize, Sequelize);
+db.publication = require("../models/publication.js")(sequelize, Sequelize);
+
+
+// db.user.hasMany(db.profile);
+
+//relaciones
+db.profile.belongsTo(db.user);
+
+db.user.hasMany(db.publication);
+
+
 
 module.exports = db;
