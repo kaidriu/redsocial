@@ -43,6 +43,7 @@ const usuariosPost = async (req,res=response)=>{
     try {
             
         const {name,lastname,email,password} =req.body;
+        
         const usuario = new User({name,lastname,email,password});
 
         //encriptar contraseña
@@ -58,7 +59,7 @@ const usuariosPost = async (req,res=response)=>{
         await profile.save();
 
         const usuariof = await User.findOne({
-            where: {"email": email},
+            where: {email},
             attributes: {exclude: ['password']}
         });
 

@@ -16,6 +16,7 @@ const login=async (req,res=response)=>{
         const usuario = await User.findOne({
             where: {email}  
         });
+        
         if(!usuario){
             return res.status(400).json({
                 msg:`No existe un usuario con ese email : ${email}`
